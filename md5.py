@@ -12,7 +12,10 @@ hash_ = input("enter your md5: ")
 
 print("reading the wordlist.txt...")
 with open('wordlist.txt', 'r') as file:
-    wordlist = list(map(lambda x: x.replace("\n", ""), file.readlines()))
+    wordlist = file.read().split('\n')
+    for word in wordlist:
+        if word == "":
+            wordlist.remove(word)
 
 print("analyzing...")
 with concurrent.futures.ThreadPoolExecutor() as executor:
